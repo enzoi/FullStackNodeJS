@@ -23,9 +23,7 @@ class Header extends React.Component {
                         Emaily
                     </a>
                     <ul className="right">
-                        <li>
-                            <a>{this.renderAdmin()}</a>
-                        </li>
+                        {this.renderAdmin()}
                     </ul>
                 </div>
             </nav>
