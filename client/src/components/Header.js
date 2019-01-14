@@ -14,8 +14,11 @@ class Header extends React.Component {
                 );
             default:
                 return [
-                    <li><Payments /></li>,
-                    <li><a href="/api/logout">Logout</a></li>
+                    <li key="1"><Payments /></li>,
+                    <li key="2" style={{ margin: '0 10px' }}>
+                        Credit: {this.props.auth.credits}
+                    </li>,
+                    <li key="3"><a href="/api/logout">Logout</a></li>
                 ];
        }
     }
@@ -27,6 +30,7 @@ class Header extends React.Component {
                     <Link 
                         to={this.props.auth ? '/surveys' : '/'} 
                         className="left brand-logo"
+                        style={{ margin: '0 15px'}}
                     >
                         Emaily
                     </Link>
