@@ -8,7 +8,7 @@ class Header extends React.Component {
                 return;
             case false: 
                 return (
-                    <li><a herf="/auth/google">Login With Google</a></li>  
+                    <li><a href="/auth/google">Login With Google</a></li>  
                 );
             default:
                 return <li><a>Logout</a></li>;
