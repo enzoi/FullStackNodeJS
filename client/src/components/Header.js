@@ -1,44 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
 import Payments from './Payments';
 
 class Header extends React.Component {
-    renderAdmin() {
+    renderContent() {
         switch (this.props.auth) {
             case null:
                 return;
-            case false: 
+            case false:
                 return (
-                    <li><a href="/auth/google">Login With Google</a></li>  
+                    <Menu.Menu className="right">
+                        <Menu.Item>
+                            <a href="/auth/google">Login With Google</a>
+                        </Menu.Item>
+                    </Menu.Menu>
                 );
             default:
                 return [
-                    <li key="1"><Payments /></li>,
-                    <li key="2" style={{ margin: '0 10px' }}>
-                        Credit: {this.props.auth.credits}
-                    </li>,
-                    <li key="3"><a href="/api/logout">Logout</a></li>
+                    <Menu.Menu key="0" className="right">
+                        <Menu.Item key="1"><Payments /></Menu.Item>,
+                        <Menu.Item key="2" style={{ margin: '0 10px' }}>
+                            Credits: {this.props.auth.credits}
+                        </Menu.Item>
+                        <Menu.Item key="3"><a href="/api/logout">Logout</a></Menu.Item>
+                    </Menu.Menu>
                 ];
        }
     }
 
     render() {
         return (
-            <nav>
-                <div className="nav-wrapper">
-                    <Link 
-                        to={this.props.auth ? '/surveys' : '/'} 
-                        className="left brand-logo"
-                        style={{ margin: '0 15px'}}
-                    >
+            <Menu>
+                <Link to={this.props.auth ? '/surveys' : '/'} className="left brand-logo">
                         Emaily
-                    </Link>
-                    <ul className="right">
-                        {this.renderAdmin()}
-                    </ul>
-                </div>
-            </nav>
+                </Link>
+                {this.renderContent()}
+            </Menu>
+                    
         );
     }
 }
