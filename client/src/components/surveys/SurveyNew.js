@@ -7,9 +7,7 @@ class SurveyNew extends React.Component {
         return (
             <Container>
                 <h3>Please provide survey information</h3>
-                <SurveyForm 
-                    onSurveySubmit={() => this.setState({ showFormReview: true })}
-                />
+                <SurveyForm />
             </Container>
         );
     }
