@@ -8,6 +8,10 @@ class SurveyNew extends React.Component {
         showFormReview: false
     }
 
+    componentWillUnmount() {
+        localStorage.clear();
+    }
+
     renderContent() {
         if (this.state.showFormReview) {
             return <SurveyFormReview 

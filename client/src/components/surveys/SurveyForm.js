@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Label } from 'semantic-ui-react';
 import { Formik, ErrorMessage } from 'formik';
+import { Persist } from 'formik-persist';
 import * as Yup from 'yup';
 
 const SurveySchema = Yup.object().shape({
@@ -50,8 +51,7 @@ const SurveyForm = (props) => (
           touched,
           handleChange,
           handleBlur,
-          handleSubmit,
-          isSubmitting,
+          handleSubmit
           /* and other goodies */
         }) => (
           <Form onSubmit={handleSubmit}>
@@ -124,10 +124,10 @@ const SurveyForm = (props) => (
                 floated='right' 
                 positive 
                 type="submit" 
-                disabled={isSubmitting}
             >
                 Next
             </Button>
+            <Persist name="survey-form" />
           </Form>
         )}
       />
