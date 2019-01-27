@@ -19,7 +19,7 @@ const SurveySchema = Yup.object().shape({
       .required('Required')
   });
 
-const SurveyForm = () => (
+const SurveyForm = (props) => (
     <div>
       <Formik
         initialValues={{ title: '', subject: '', body: '', emails: '' }}
@@ -40,9 +40,8 @@ const SurveyForm = () => (
             return errors;
         }}
 
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
-          setSubmitting(false)
+        onSubmit={(values) => {
+            props.onSurveySubmit()
         }}
         
         render={({
@@ -121,7 +120,12 @@ const SurveyForm = () => (
                     Cancel
                 </Button>
             </Link>
-            <Button floated='right' positive type="submit" disabled={isSubmitting}>
+            <Button 
+                floated='right' 
+                positive 
+                type="submit" 
+                disabled={isSubmitting}
+            >
                 Next
             </Button>
           </Form>
