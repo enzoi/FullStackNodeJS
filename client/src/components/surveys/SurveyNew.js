@@ -7,7 +7,7 @@ import { Container } from 'semantic-ui-react';
 class SurveyNew extends React.Component {
     state = {
         showFormReview: false,
-        formValues: { title: '', subject: '', body: '', emails: '' }
+        formValues: { title: '', subject: '', body: '', recipients: '' }
     }
 
     componentWillUnmount() {
@@ -15,7 +15,15 @@ class SurveyNew extends React.Component {
     }
 
     onSubmit = values => {
-        console.log(values);
+
+        // POST TO Surveys
+
+        // Reset State
+        // this.setState({ 
+        //     showFormReview: false,
+        //     formValues: { title: '', subject: '', body: '', recipients: '' }
+        // });
+
     }
 
     renderContent() {

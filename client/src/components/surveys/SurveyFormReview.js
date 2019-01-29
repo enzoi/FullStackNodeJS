@@ -31,7 +31,7 @@ const SurveyFormReview = ({ onCancel, onSubmit, formValues }) => {
                 <Form.Field>
                     <label>Recipient List</label>
                     <Input
-                        value={formValues.emails}
+                        value={formValues.recipients}
                     />
                 </Form.Field>
 

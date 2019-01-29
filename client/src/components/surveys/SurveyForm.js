@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Label } from 'semantic-ui-react';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { Persist } from 'formik-persist';
 import * as Yup from 'yup';
 
@@ -23,17 +23,17 @@ const SurveySchema = Yup.object().shape({
 const SurveyForm = (props) => (
     <div>
       <Formik
-        initialValues={{ title: '', subject: '', body: '', emails: '' }}
+        initialValues={{ title: '', subject: '', body: '', recipients: '' }}
         validationSchema={SurveySchema}
         validate={values => {
             let errors = {};
             
-            const invalidEmails = values.emails
+            const invalidEmails = values.recipients
                 .split(',')
                 .map(email => email.trim())
                 .filter(email => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email) === false);
 
-            if (!values.emails) {
+            if (!values.recipients) {
                 errors.emails = 'Required';
             } else if (invalidEmails.length) {
                 errors.emails = `Invalid email addresses: ${invalidEmails}`;
@@ -107,11 +107,11 @@ const SurveyForm = (props) => (
                         <label>Recipient List</label>
                         <Input
                             placeholder="Recipient List" 
-                            type="emails"
-                            name="emails"
+                            type="recipients"
+                            name="recipients"
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values.emails}
+                            value={values.recipients}
                         />
                         {errors.emails && touched.emails ? ( 
                             <Label pointing style={{ color: 'red'}}>{errors.emails}</Label> 
