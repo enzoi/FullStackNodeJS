@@ -1,27 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SurveyForm from './SurveyForm';
 import SurveyFormReview from './SurveyFormReview';
 import { Container } from 'semantic-ui-react';
 
 class SurveyNew extends React.Component {
     state = {
-        showFormReview: false
+        showFormReview: false,
+        formValues: { title: '', subject: '', body: '', emails: '' }
     }
 
     componentWillUnmount() {
         localStorage.clear();
     }
 
+    onSubmit = values => {
+        console.log(values);
+    }
+
     renderContent() {
         if (this.state.showFormReview) {
             return <SurveyFormReview 
                 onCancel={() => this.setState({ showFormReview: false})}
+                formValues={this.state.formValues}
+                onSubmit={this.onSubmit(this.state.formValues)}
             />;
         } 
 
         return (
             <SurveyForm 
-                onSurveySubmit={() => this.setState({ showFormReview: true })}
+                onSurveySubmit={(values) => this.setState({ showFormReview: true, formValues: values })}
             />
         );
     }
@@ -29,11 +37,14 @@ class SurveyNew extends React.Component {
     render() {
         return (
             <Container>
-                <h3>Please provide survey information</h3>
                 {this.renderContent()}
             </Container>
         );
     }
 }
 
-export default SurveyNew;
+const mapStateToProps = state => {
+    return { formValues: state.formValues }
+}
+
+export default connect(mapStateToProps)(SurveyNew);

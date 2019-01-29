@@ -20,7 +20,7 @@ class Header extends React.Component {
             default:
                 return [
                     <Menu.Menu key="0" className="right">
-                        <Menu.Item key="1"><Payments /></Menu.Item>,
+                        <Menu.Item key="1"><Payments /></Menu.Item>
                         <Menu.Item key="2" style={{ margin: '0 10px' }}>
                             Credits: {this.props.auth.credits}
                         </Menu.Item>
