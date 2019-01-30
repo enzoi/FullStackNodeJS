@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { Form, Input, Button } from 'semantic-ui-react';
 import { submitSurvey } from '../../actions';
 
-const SurveyFormReview = ({ onCancel, submitSurvey, formValues }) => {
+const SurveyFormReview = ({ onCancel, submitSurvey, formValues, history }) => {
     return (
         <div>
             <h3>Please confirm the survey form</h3>
@@ -46,7 +47,7 @@ const SurveyFormReview = ({ onCancel, submitSurvey, formValues }) => {
                 <Button 
                         floated='right'
                         negative
-                        onClick={() => submitSurvey(formValues)}
+                        onClick={() => submitSurvey(formValues, history)}
                     >
                         Submit
                     </Button>
@@ -55,4 +56,4 @@ const SurveyFormReview = ({ onCancel, submitSurvey, formValues }) => {
     );
 }
 
-export default connect(null, { submitSurvey })(SurveyFormReview);
+export default connect(null, { submitSurvey })(withRouter(SurveyFormReview));
