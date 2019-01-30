@@ -14,24 +14,11 @@ class SurveyNew extends React.Component {
         localStorage.clear();
     }
 
-    onSubmit = values => {
-
-        // POST TO Surveys
-
-        // Reset State
-        // this.setState({ 
-        //     showFormReview: false,
-        //     formValues: { title: '', subject: '', body: '', recipients: '' }
-        // });
-
-    }
-
     renderContent() {
         if (this.state.showFormReview) {
             return <SurveyFormReview 
                 onCancel={() => this.setState({ showFormReview: false})}
                 formValues={this.state.formValues}
-                onSubmit={this.onSubmit(this.state.formValues)}
             />;
         } 
 

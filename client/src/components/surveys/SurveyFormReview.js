@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Form, Input, Button } from 'semantic-ui-react';
+import { submitSurvey } from '../../actions';
 
-const SurveyFormReview = ({ onCancel, onSubmit, formValues }) => {
+const SurveyFormReview = ({ onCancel, submitSurvey, formValues }) => {
     return (
         <div>
             <h3>Please confirm the survey form</h3>
-            <Form onSubmit={onSubmit}>
+            <Form>
                 <Form.Field>
                     <label>Survey Title</label>
                     <Input
@@ -42,17 +43,16 @@ const SurveyFormReview = ({ onCancel, onSubmit, formValues }) => {
                 >
                     Back
                 </Button>
-                <Link to="/surveys">
-                    <Button 
+                <Button 
                         floated='right'
                         negative
+                        onClick={() => submitSurvey(formValues)}
                     >
                         Submit
                     </Button>
-                </Link>
             </Form>
         </div>
     );
 }
 
-export default SurveyFormReview;
+export default connect(null, { submitSurvey })(SurveyFormReview);
