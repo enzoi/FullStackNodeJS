@@ -42,7 +42,6 @@ const SurveyForm = (props) => (
         }}
 
         onSubmit={(values) => {
-            console.log('value submitted', values);
             props.onSurveySubmit(values);
         }}
         
